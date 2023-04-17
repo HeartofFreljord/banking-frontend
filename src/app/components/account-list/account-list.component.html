@@ -1,0 +1,6 @@
+<ul *ngFor="let account of accounts">
+  <li>
+    <p><a href="/account/{{account.id}}">{{account.iban}}</a> </p>
+    <p>{{account.balance}}</p>
+  </li>
+</ul>
