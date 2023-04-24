@@ -1,0 +1,5 @@
+<app-navigator></app-navigator>
+<p>{{selectedAccount.iban}}</p>
+<p>{{selectedAccount.balance}}</p>
+<button (click)="makeTransaction()">Make a transaction</button>
+<app-transaction-list [observableAccount]=observableAccount></app-transaction-list>

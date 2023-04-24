@@ -1,0 +1,6 @@
+<app-navigator></app-navigator>
+<p>Here is your financial status</p>
+<div *ngFor="let category of categoryList; index as i">
+<p>Category: {{category.name}}</p>
+  <p>Total amount: €{{valuePerCategory[i]}}</p>
+</div>

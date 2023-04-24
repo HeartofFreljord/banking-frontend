@@ -1,0 +1,22 @@
+<app-navigator></app-navigator>
+<form [formGroup]="transactionForm" (ngSubmit)="submitTransaction()">
+  <div class="container">
+    <label><b>Sender IBAN</b></label>
+    <input type="text" placeholder="Enter IBAN" formControlName="senderIban" required>
+
+    <label><b>Description</b></label>
+    <input type="text" placeholder="Enter Description" formControlName="description" required>
+
+    <label><b>Amount</b></label>
+    <input type="number" placeholder="Enter Amount" formControlName="amount" required>
+
+
+    <mat-form-field appearance="fill">
+      <label><b>Category</b></label>
+      <mat-select [(value)]="selectedCategory">
+        <mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="button" type="submit">Submit</button>
+  </div>
+</form>

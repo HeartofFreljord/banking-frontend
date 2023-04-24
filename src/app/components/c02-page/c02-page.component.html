@@ -1,0 +1,6 @@
+<app-navigator></app-navigator>
+<p>Here is your C02 footprint status</p>
+<div *ngFor="let category of categoryList; index as i">
+  <p>Category: {{category.name}}</p>
+  <p>Total amount: {{valuePerCategory[i]}}Kg</p>
+</div>

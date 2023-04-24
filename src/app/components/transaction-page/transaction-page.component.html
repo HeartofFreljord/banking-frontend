@@ -1,0 +1,8 @@
+<app-navigator></app-navigator>
+<div *ngIf="selectedTransaction">
+  <p>{{selectedTransaction.senderIban}}</p>
+  <p>{{selectedTransaction.amount}}</p>
+  <p>{{selectedTransaction.description}}</p>
+  <p>{{selectedTransaction.sendDate}}</p>
+  <p>{{selectedTransaction.category.name}}</p>
+</div>
