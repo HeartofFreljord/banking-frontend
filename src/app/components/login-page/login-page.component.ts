@@ -26,12 +26,13 @@ export class LoginPageComponent {
   submitLogin(): void {
     this._customerService.authenticateCustomer(this.loginForm.value.email!, this.loginForm.value.password!).subscribe(value => {
       this.authenticatedCustomer = value;
+      if (this.authenticatedCustomer == null) {
+        alert("Login failed");
+      } else {
+        this.loginForm.reset();
+        this.router.navigate(['/dashboard'])
+      }
     });
-    if (this.authenticatedCustomer == null) {
-      alert("Login failed");
-    } else {
-      this.loginForm.reset();
-      //this.router.navigate(['/dashboard'])
-    }
+
   }
 }

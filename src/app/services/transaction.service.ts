@@ -15,13 +15,27 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TransactionService {
+  currentTransaction: Observable<ITransaction> = {} as Observable<ITransaction>;
   url: string = "http://localhost:8080";
 
   constructor(private http: HttpClient) {
   }
 
   public getTransactionByAccount(account: IAccount): Observable<ITransaction[]>{
-    console.log(JSON.stringify(account));
-    return this.http.put<ITransaction[]>(this.url + "/transactions", JSON.stringify(account), httpOptions);
+    return this.http.put<ITransaction[]>(this.url + "/transactions/account", JSON.stringify(account), httpOptions);
+  }
+
+  public getTransactionByAccountIdAndCategoryId(account: number, category: number): Observable<ITransaction[]>{
+    let param: string = "?accountId=" + account + "&categoryId=" + category;
+    return this.http.put<ITransaction[]>(this.url + "/transactions/category" + param, httpOptions);
+  }
+
+  public getTransactionById(id: number): Observable<ITransaction>{
+    this.currentTransaction = this.http.get<ITransaction>(this.url + "/transaction/" + id);
+    return this.currentTransaction;
+  }
+
+  public createTransaction(transaction: ITransaction): Observable<ITransaction>{
+    return this.http.post<ITransaction>(this.url + "/transactions", JSON.stringify(transaction), httpOptions);
   }
 }

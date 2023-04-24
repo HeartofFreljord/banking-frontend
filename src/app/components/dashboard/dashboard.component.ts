@@ -17,6 +17,6 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
     this.loggedInCustomer = this._customerService.getCurrentCustomer();
-    console.log(this.loggedInCustomer);
+
   }
 }

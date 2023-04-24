@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ICustomer} from "../../models/Customer";
 import {IAccount} from "../../models/Account";
 import {AccountService} from "../../services/account.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-list',
@@ -13,7 +14,8 @@ export class AccountListComponent implements OnInit{
   accounts: IAccount[] = [];
 
   constructor(
-    private _accountService: AccountService
+    private _accountService: AccountService,
+    private router: Router,
   ) {
   }
 
@@ -21,5 +23,9 @@ export class AccountListComponent implements OnInit{
     this._accountService.getAccountsByCustomer(this.loggedInCustomer).subscribe(value => {
       this.accounts = value;
     });
+  }
+
+  selectAccount(account: IAccount) {
+    this.router.navigate(['/account', account.id])
   }
 }

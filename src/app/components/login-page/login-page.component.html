@@ -1,11 +1,12 @@
-<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
-  <div class="container">
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter email" formControlName="email" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter password" formControlName="password" required>
+<mat-form-field [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <div>
+    <mat-label>Email</mat-label>
+    <input matInput type="text" placeholder="Enter email" formControlName="email" required>
+  </div>
+  <div>
+    <mat-label><b>Password</b></mat-label>
+    <input matInput type="password" placeholder="Enter password" formControlName="password" required>
 
     <button class="button" type="submit">Login</button>
-  </div>
-</form>
+
+</mat-form-field>

@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './components/login-page/login-page.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {NavigatorComponent} from './components/navigator/navigator.component';
 import {AccountListComponent} from './components/account-list/account-list.component';
@@ -17,6 +17,13 @@ import {TransactionService} from "./services/transaction.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import { AddTransactionPageComponent } from './components/add-transaction-page/add-transaction-page.component';
+import { TransactionPageComponent } from './components/transaction-page/transaction-page.component';
+import { InsightPageComponent } from './components/insight-page/insight-page.component';
+import { C02PageComponent } from './components/c02-page/c02-page.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MAT_FORM_FIELD, MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -26,7 +33,11 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
     NavigatorComponent,
     AccountListComponent,
     TransactionListComponent,
-    AccountPageComponent
+    AccountPageComponent,
+    AddTransactionPageComponent,
+    TransactionPageComponent,
+    InsightPageComponent,
+    C02PageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,12 +45,16 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    FormsModule,
+    MatInputModule
   ],
   providers: [
     CustomerService,
     AccountService,
     TransactionService,
+    {provide:MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: "outline"}}
   ],
   bootstrap: [AppComponent]
 })

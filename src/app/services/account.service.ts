@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccountService {
-  private currentAccount: IAccount = {} as IAccount;
+  private currentAccount: Observable<IAccount> = {} as Observable<IAccount>;
   url: string = "http://localhost:8080"
 
   constructor(private http: HttpClient) {
@@ -25,10 +25,12 @@ export class AccountService {
   }
 
   public getAccountById(id: number): Observable<IAccount>{
-    return this.http.get<IAccount>(this.url + "/account/" + id).pipe(
-      tap(account => {
-        console.log(account);
-      })
-    );
+    this.currentAccount = this.http.get<IAccount>(this.url + "/account/" + id);
+    return this.currentAccount;
   }
+
+  public getCurrentAccount(): Observable<IAccount> {
+    return this.currentAccount;
+  }
+
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 export class CustomerService {
   private currentCustomer: ICustomer = {} as ICustomer;
   url: string = "http://localhost:8080"
-
+  private isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) {
   }
@@ -23,14 +23,19 @@ export class CustomerService {
   public authenticateCustomer(email: string, password: string): Observable<ICustomer> {
     return this.http.put<ICustomer>(this.url + "/auth", JSON.stringify([email, password]), httpOptions).pipe(
       tap( value => {
-        this.currentCustomer = value;
-        localStorage.setItem("currentCustomer", JSON.stringify(this.currentCustomer));
-        console.log(JSON.stringify(this.currentCustomer))
+        if (value != null) {
+          this.currentCustomer = value;
+          sessionStorage.setItem("currentCustomer", JSON.stringify(this.currentCustomer));
+          this.isLoggedIn = true;
+        }
       })
     );
   }
 
   public getCurrentCustomer() {
-    return JSON.parse(localStorage.getItem("currentCustomer")!);
+    return JSON.parse(sessionStorage.getItem("currentCustomer")!);
+  }
+  public getLoggedInStatus(){
+    return of(this.isLoggedIn);
   }
 }

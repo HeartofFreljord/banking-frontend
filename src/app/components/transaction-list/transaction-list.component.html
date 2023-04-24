@@ -1,3 +1,10 @@
-<p>transaction-list works!</p>
-<p>{{selectedAccount.iban}}</p>
-<p>{{selectedAccount.id}}</p>
+<ul *ngFor="let transaction of transactions">
+  <li>
+    <button (click)="selectTransaction(transaction)">
+      <p>{{transaction.description}}</p>
+      <p>{{transaction.sendDate}}</p>
+      <p>{{transaction.amount}}</p>
+      <p>{{transaction.category.name}}</p>
+    </button>
+  </li>
+</ul>
